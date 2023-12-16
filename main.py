@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pickle as pkl
+import tensorflow as tf
 from tensorflow import keras
 
 class_list = {'0': 'Negative', '1': 'Positve'}
