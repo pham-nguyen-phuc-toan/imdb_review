@@ -30,7 +30,7 @@ if txt != '':
         x_test = []
         for w in sen.split():
             x_test.append(index[w])
-        x_test = [x_test]
+        x_test = np.array(x_test).T
         x_test = pad_sequences(x_test, maxlen=200)
         st.write('x_test:', x_test.shape)
         feature_vector = np.expand_dims(x_test, axis=2)
