@@ -29,7 +29,7 @@ if txt != '':
         sen = txt.lower()
         x_test = []
         for w in sen.split():
-            x_test += index[w]
+            x_test += [index[w]]
         x_test = [x_test]
         x_test = pad_sequences(x_test, maxlen=200)
         st.write('x_test:', x_test.shape)
