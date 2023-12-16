@@ -15,7 +15,7 @@ class_list = {'0': 'Negative', '1': 'Positve'}
 
 st.title('Sentiment analysis from IMDB review')
 
-image = Image.open('feedback.jpg')
+image = Image.open('imdb.png')
 st.image(image)
 
 input_md = open('bilstm_imdb.pkl', 'rb')
