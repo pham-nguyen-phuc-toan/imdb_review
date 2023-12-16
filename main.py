@@ -34,7 +34,7 @@ if txt != '':
         x_test = pad_sequences(x_test, maxlen=200)
         feature_vector = np.expand_dims(x_test, axis=2)
         pred = model.predict(feature_vector)
-        label = np.argmax(pred, axis = -1)
+        label = str(np.argmax(pred, axis = -1)[0])
         st.write(label)
 
         st.header('Result')
