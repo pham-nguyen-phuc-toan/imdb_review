@@ -3,6 +3,7 @@ from PIL import Image
 import pickle as pkl
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 class_list = {'0': 'Negative', '1': 'Positve'}
 
@@ -19,7 +20,7 @@ txt = st.text_area('', '')
 
 if txt != '':
     if st.button('Predict'):
-        feature_vector = encoder.transform([txt])
+        feature_vector = np.expand_dims([txt], axis=2)
         label = str((model.predict(feature_vector))[0])
 
         st.header('Result')
