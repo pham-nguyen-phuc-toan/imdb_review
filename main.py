@@ -26,12 +26,13 @@ txt = st.text_area('', '')
 
 if txt != '':
     if st.button('Predict'):
+        sen = 'this film is so awful'
+        sen = sen.lower()
         x_test = []
-        for w in txt.split():
-            x_test += [index[w]]        
-        x_test = pad_sequences(x_test, maxlen=maxlen)
-        feature_vector = np.expand_dims(x_test, axis=2)
-        label = str((model.predict(feature_vector))[0])
+        for w in sen.split():
+            x_test.append(index[w])
+        pred = model.predict(feature_vector)
+        label = np.argmax(pred, axis = -1)
 
         st.header('Result')
         st.text(class_list[label])
