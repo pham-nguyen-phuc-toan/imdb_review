@@ -35,6 +35,7 @@ if txt != '':
         feature_vector = np.expand_dims(x_test, axis=2)
         pred = model.predict(feature_vector)
         label = np.argmax(pred, axis = -1)
+        st.write(label)
 
         st.header('Result')
         st.text(class_list[label])
