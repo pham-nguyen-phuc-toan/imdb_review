@@ -32,6 +32,7 @@ if txt != '':
             x_test.append([index[w]])
         x_test = pad_sequences(x_test, maxlen=200)
         st.write('x_test:', x_test.shape)
+        st.write(x_test)
         feature_vector = np.expand_dims(x_test, axis=2)
         st.write('feature_vector:', feature_vector.shape)
         pred = model.predict(feature_vector)
