@@ -1,43 +1,25 @@
-import os
-import sys
+import streamlit as st
+from PIL import Image
+import pickle as pkl
+import numpy as np
 
-from fastapi import FastAPI
-from fastapi.logger import logger
-from pydantic import BaseSettings
+class_list = {'0': 'Negative', '1': 'Positve'}
 
+st.title('Sentiment analysis from IMDB review')
 
-class Settings(BaseSettings):
-    # ... The rest of our FastAPI settings
+image = Image.open('feedback.jpg')
+st.image(image)
 
-    BASE_URL = "http://localhost:8000"
-    USE_NGROK = os.environ.get("USE_NGROK", "False") == "True"
+input_md = open('bilstm_imdb.pkl', 'rb')
+model = pkl.load(input_md)
 
+st.header('Write a feedback')
+txt = st.text_area('', '')
 
-settings = Settings()
+if txt != '':
+    if st.button('Predict'):
+        feature_vector = encoder.transform([txt])
+        label = str((model.predict(feature_vector))[0])
 
-
-def init_webhooks(base_url):
-    # Update inbound traffic via APIs to use the public-facing ngrok URL
-    pass
-
-
-# Initialize the FastAPI app for a simple web server
-app = FastAPI()
-
-if settings.USE_NGROK:
-    # pyngrok should only ever be installed or initialized in a dev environment when this flag is set
-    from pyngrok import ngrok
-
-    # Get the dev server port (defaults to 8000 for Uvicorn, can be overridden with `--port`
-    # when starting the server
-    port = sys.argv[sys.argv.index("--port") + 1] if "--port" in sys.argv else "8000"
-
-    # Open a ngrok tunnel to the dev server
-    public_url = ngrok.connect(port).public_url
-    logger.info("ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
-
-    # Update any base URLs or webhooks to use the public ngrok URL
-    settings.BASE_URL = public_url
-    init_webhooks(public_url)
-
-# ... Initialize routers and the rest of our app
+        st.header('Result')
+        st.text(class_list[label])
