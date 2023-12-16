@@ -1,10 +1,10 @@
 import streamlit as st
+import numpy as np
 from PIL import Image
 import pickle as pkl
 import tensorflow as tf
 from tensorflow import keras
 from keras.datasets import imdb
-import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 maxlen = 200
