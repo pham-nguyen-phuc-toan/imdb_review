@@ -32,6 +32,7 @@ if txt != '':
             x_test += [index[w]]
         x_test = [x_test]
         x_test = pad_sequences(x_test, maxlen=200)
+        st.write(x_test[0])
         st.write('x_test:', x_test.shape)
         st.write(x_test)
         feature_vector = np.expand_dims(x_test, axis=2)
