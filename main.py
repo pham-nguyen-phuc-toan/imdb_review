@@ -30,17 +30,16 @@ if txt != '':
         x_test = []
         for w in sen.split():
             x_test.append(index[w])
-        st.write('x_test:', x_test)
+        st.write('x_test:', len(x_test))
         x_test = [x_test]
-        st.write('x_test:', x_test)
+        st.write('x_test:', len(x_test))
         x_test = pad_sequences(x_test, maxlen=200)
-        st.write('x_test:', x_test)
+        st.write('x_test:', len(x_test))
         feature_vector = np.expand_dims(x_test, axis=2)
-        st.write('feature_vector:', feature_vector)
+        st.write('feature_vector:', len(feature_vector))
         pred = model.predict(feature_vector)
-        st.write('pred:', pred)
+        st.write('pred:', len(pred))
         label = str(np.argmax(pred, axis = -1)[0])
-        st.write('label:', label)
 
         st.header('Result')
         st.text(class_list[label])
